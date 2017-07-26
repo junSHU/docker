@@ -14,7 +14,7 @@ RUN wget $TC_URL && \
 		   apache-tomcat-$TC_VERSION.* && \
 	sed -i '86a JAVA_OPTS="-Xms1g -Xmx4g -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:NewSize=512m -XX:MaxPermSize=256m -Dfile.encoding=GBK -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=false -Djava.rmi.server.hostname=localhost"' tomcat6/bin/catalina.sh && \
 	sed -i '71a <Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener" rmiRegistryPortPlatform="10001" rmiServerPortPlatform="10002" />' tomcat6/conf/server.xml && \
-	wget -P /opt/heading/ http://download.hd123.com/TmpFiles/TA/20170726.2/run.sh && \
+	wget -P /opt/heading/ http://download.hd123.com/TmpFiles/TA/20170726.4/run.sh && \
 	wget -P /opt/heading/tomcat6/lib http://download.hd123.com/TmpFiles/TA/20170721/tomcat-catalina-jmx-remote-6.0.36.jar && \
 	chmod +x /opt/heading/run.sh
 
