@@ -1,5 +1,7 @@
 FROM dockerhub.hd123.com/jre-alpine:6
 
+ENV CATALINA_HOME /opt/heading/tomcat6
+ENV PATH $CATALINA_HOME/bin:$PATH
 ENV TC_MAJOR=6 \
 	TC_VERSION=6.0.36
 ENV TC_URL=http://archive.apache.org/dist/tomcat/tomcat-$TC_MAJOR/v$TC_VERSION/bin/apache-tomcat-$TC_VERSION.tar.gz

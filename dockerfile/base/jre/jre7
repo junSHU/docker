@@ -1,27 +1,22 @@
 FROM alpine:latest
 
-ENV JAVA_VERSION_MAJOR=7 \
-	JAVA_VERSION_MINOR=80 \
-	JAVA_VERSION_BUILD=15 \
-	JAVA_HOME=/usr/lib/jvm/default-jvm \
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm \
 	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/default-jvm/bin/ \
-	LANG=zh_CN.UTF-8 \
-	GLIBC_VERSION=2.25-r0
+	LANG=zh_CN.UTF-8
 
 RUN apk update && \
 	apk upgrade && \
 	apk add curl zip && \
-	apk add -U tzdata && \
-	curl -L -o glibc-${GLIBC_VERSION}.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" && \
-	curl -L -o glibc-bin-${GLIBC_VERSION}.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk" && \
-	curl -L -o glibc-i18n-${GLIBC_VERSION}.apk "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}.apk" && \
+	curl -L -o glibc-2.25-r0.apk "https://raw.githubusercontent.com/junSHU/docker/develop/dockerfile/base/apk/glibc-2.25-r0.apk" && \
+	curl -L -o glibc-bin-2.25-r0.apk "https://raw.githubusercontent.com/junSHU/docker/develop/dockerfile/base/apk/glibc-bin-2.25-r0.apk" && \
+	curl -L -o glibc-i18n-2.25-r0.apk "https://raw.githubusercontent.com/junSHU/docker/develop/dockerfile/base/apk/glibc-i18n-2.25-r0.apk" && \
 	apk add --allow-untrusted *.apk && \
 	/usr/glibc-compat/bin/localedef -i zh_CN -f UTF-8 zh_CN.UTF-8 && \
 	apk del glibc-i18n && \
 	rm -f *.apk && \
 	mkdir -p /usr/lib/jvm/ && \
-	curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/jre-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz" | tar xz -C /usr/lib/jvm/ && \
-	ln -s jre1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} /usr/lib/jvm/default-jvm && \
+	curl "https://raw.githubusercontent.com/junSHU/docker/develop/dockerfile/base/tar/jre-7u80-linux-x64.tar.gz" | tar xz -C /usr/lib/jvm/ && \
+	ln -s jre1.7.0_80 /usr/lib/jvm/default-jvm && \
 	mkdir /tmp/tmprt && \
 	cd /tmp/tmprt && \
 	unzip -q /usr/lib/jvm/default-jvm/lib/rt.jar && \
@@ -56,6 +51,5 @@ RUN apk update && \
 		   /tmp/tmprt \
 		   /var/cache/apk/* \
 		   /tmp/* && \
-	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 	echo "Asia/Shanghai" > /etc/timezone && \
-	apk del tzdata zip
+	apk del zip curl
