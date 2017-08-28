@@ -11,6 +11,6 @@ RUN mkdir -p /opt/heading/ && \
 	rm -rf mysql-connector-java && \
 	mkdir azkaban-web/logs/ && \
 	sed -i "s/&//" azkaban-web/bin/azkaban-web-start.sh && \
-	wget -P /opt/heading/ http://download.hd123.com/TmpFiles/TA/20170627.2/run.sh
+	wget -P /opt/heading/ http://download.hd123.com/TmpFiles/TA/20170828/run.sh
 	
 ENTRYPOINT sh /opt/heading/run.sh

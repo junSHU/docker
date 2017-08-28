@@ -26,7 +26,8 @@ sed -i 's:^[ \t]*mysql.host[ \t]*=\([ \t]*.*\)$:mysql.host='${AZKABAN_MYSQL_HOST
 		s:^[ \t]*mysql.database[ \t]*=\([ \t]*.*\)$:mysql.database='${AZKABAN_MYSQL_DATABASE}':;\
 		s:^[ \t]*mysql.user[ \t]*=\([ \t]*.*\)$:mysql.user='${AZKABAN_MYSQL_USER}':;\
 		s:^[ \t]*mysql.password[ \t]*=\([ \t]*.*\)$:mysql.password='${AZKABAN_MYSQL_PASSWORD}':;\
-		s:^[ \t]*executor.host[ \t]*=\([ \t]*.*\)$:executor.host='${AZKABAN_MYSQL_HOST}':' /opt/heading/azkaban-web/conf/azkaban.properties && \
+		s:^[ \t]*executor.host[ \t]*=\([ \t]*.*\)$:executor.host='${AZKABAN_MYSQL_HOST}':;\
+		s:^[ \t]*executor.port[ \t]*=\([ \t]*.*\)$:executor.port='${AZKABAN_EXECUTOR_PORT}':' /opt/heading/azkaban-web/conf/azkaban.properties && \
 sed -i 's:username=\(\"azkaban\"\):username=\"'${AZKABAN_ADMIN}'\":;\
 		s:password=\(\"azkaban\"\):password=\"'${AZKABAN_ADMIN_PASSWORD}'\":;\
 		s:password=\(\"metrics\"\):password=\"'${AZKABAN_METRICS_PASSWORD}'\":' /opt/heading/azkaban-web/conf/azkaban-users.xml
