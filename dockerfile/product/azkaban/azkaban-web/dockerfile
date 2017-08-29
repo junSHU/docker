@@ -15,7 +15,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 	mkdir azkaban-web/logs/ && \
 	sed -i "s/&//" azkaban-web/bin/azkaban-web-start.sh && \
 	wget -P /opt/heading/ http://download.hd123.com/TmpFiles/TA/20170828/run.sh && \
-	apk del curl && \
 	rm -rf /var/cache/apk/*
 	
 ENTRYPOINT sh /opt/heading/run.sh
