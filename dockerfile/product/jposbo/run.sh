@@ -3,7 +3,7 @@
 set -e
 cmd="sh /opt/heading/tomcat6/bin/catalina.sh run"
 sed -i 's:rmi.server.hostname=localhost:rmi.server.hostname='${HOSTCPNAME}':' /opt/heading/tomcat6/bin/catalina.sh
-until mysql -h$JPOSBO_MYSQL_HOST -P$JPOSBO_MYSQL_PORT -u$JPOSBO_MYSQL_USER -p$JPOSBO_ROOT_PASSWORD -e "select version();";do
+until mysql -h$JPOSBO_MYSQL_HOST -P$JPOSBO_MYSQL_PORT -u$JPOSBO_MYSQL_USER -p$JPOSBO_MYSQL_PASSWORD -e "select version();";do
   >&2 echo "Mysql is unavailable - sleeping"
   sleep 1
 done
