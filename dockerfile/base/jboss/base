@@ -1,6 +1,8 @@
 FROM dockerhub.hd123.com/jre-alpine:6
 
-RUN	apk add --no-cache curl && \
+RUN	sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+	apk update && \
+	apk add --no-cache curl && \
 	mkdir -p /opt/heading/upgrade && \
 	curl "http://download.hd123.com/TmpFiles/TA/20171025/jboss-hdcard-as-hq.tar.gz" | tar xz -C /opt/heading/ && \
 	chmod +x /opt/heading/hq/bin/run.sh && \
