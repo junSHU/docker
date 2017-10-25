@@ -2,11 +2,11 @@ FROM dockerhub.hd123.com/jre-alpine:6
 
 RUN	apk add --no-cache curl && \
 	mkdir -p /opt/heading/upgrade && \
-	curl "http://download.hd123.com/TmpFiles/TA/20170513/jboss-hdcard-as-hq.tar.gz" | tar xz -C /opt/heading/ && \
+	curl "http://download.hd123.com/TmpFiles/TA/20171025/jboss-hdcard-as-hq.tar.gz" | tar xz -C /opt/heading/ && \
 	chmod +x /opt/heading/hq/bin/run.sh && \
-	curl "http://download.hd123.com/TmpFiles/TA/20170521/jboss-hdcard-as-ct.tar.gz" | tar xz -C /opt/heading/ && \
+	curl "http://download.hd123.com/TmpFiles/TA/20171025/jboss-hdcard-as-ct.tar.gz" | tar xz -C /opt/heading/ && \
 	chmod +x /opt/heading/ct/bin/run.sh && \
-	curl "http://download.hd123.com/TmpFiles/TA/20170513/jboss-hdcard-as-cs.tar.gz" | tar xz -C /opt/heading/ && \
+	curl "http://download.hd123.com/TmpFiles/TA/20171025/jboss-hdcard-as-cs.tar.gz" | tar xz -C /opt/heading/ && \
 	chmod +x /opt/heading/cs/bin/run.sh && \
 	curl "http://download.hd123.com/TmpFiles/TA/20170726.3/hdcard_upgrade.tar.gz" | tar xz -C /opt/heading/upgrade && \
 	wget -P /opt/heading/ http://download.hd123.com/TmpFiles/TA/20170502/hdcard.sh && \
